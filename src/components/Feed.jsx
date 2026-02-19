@@ -23,9 +23,11 @@ const Feed = () => {
     useEffect(()=>{
         feeds();
     },[])
+    if(!feed) return ;  
+    if(feed?.length === 0) return <div className='flex items-center justify-center min-h-screen text-2xl'>No feed found</div>   
   return (
     <div>
-        {feed && <FeedCard user={feed?.[1]} />}
+         <FeedCard user={feed?.[1]} />
     </div>
   )
 }
