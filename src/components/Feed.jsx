@@ -25,7 +25,7 @@ const Feed = () => {
     },[])
   return (
     <div>
-        <FeedCard user={feed?.[1]} />
+        {feed && <FeedCard user={feed?.[1]} />}
     </div>
   )
 }

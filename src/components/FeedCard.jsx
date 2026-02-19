@@ -1,6 +1,6 @@
 import React from "react";
 
-const FeedCard = ({ user }) => {
+const FeedCard = ({ user, showActions = true }) => {
   const { firstName, lastName, age, gender, photoURL, about } = user || {};
   console.log(gender, about);
   return (
@@ -18,8 +18,12 @@ const FeedCard = ({ user }) => {
         </p>
         <h3>{about}</h3>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Ignore</button>
-          <button className="btn btn-primary">Interested</button>
+          {showActions && (
+            <>
+              <button className="btn btn-primary">Ignore</button>
+              <button className="btn btn-primary">Interested</button>
+            </>
+          )}
         </div>
       </div>
     </div>

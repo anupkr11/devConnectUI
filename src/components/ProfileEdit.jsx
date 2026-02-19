@@ -32,7 +32,7 @@ const ProfileEdit = ({ user }) => {
         { withCredentials: true },
       );
       console.log(res.data);
-      dispatch(addUser(res?.data?.data));
+      dispatch(addUser(res?.data));
       setToast(true);
       setTimeout(() => {
         setToast(false);
@@ -109,6 +109,7 @@ const ProfileEdit = ({ user }) => {
 
           <FeedCard
             user={{ firstName, lastName, photoURL, age, about, gender }}
+            showActions={false}
           />
         </div>
       </div>
