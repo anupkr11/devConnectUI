@@ -27,7 +27,7 @@ const Feed = () => {
     if(feed?.length === 0) return <div className='flex items-center justify-center min-h-screen text-2xl'>No feed found</div>   
   return (
     <div>
-         <FeedCard user={feed?.[1]} />
+         <FeedCard user={feed?.[0]} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
@@ -10,15 +10,22 @@ const Login = () => {
   const [password, setPassword] = useState("Anup@123");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [age, setAge] = useState(24);
-  const [gender, setGender] = useState("male");
-  const [about, setAbout] = useState("I am a software developer");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [about, setAbout] = useState("This is about me");
   const [photoURL, setPhotoURL] = useState("");
   const [err, setErr] = useState("");
   const [isLogin, setIsLogin] = useState(true);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/profile");
+    }
+  }, [user, navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -26,7 +33,7 @@ const Login = () => {
       const res = await axios.post(
         BASE_URL + "login",
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(addUser(res.data));
       return navigate("/");
@@ -40,7 +47,7 @@ const Login = () => {
       const res = await axios.post(
         BASE_URL + "signup",
         { firstName, lastName, age, gender, about, email, password, photoURL },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       dispatch(addUser(res?.data?.user));
       return navigate("/profile");
@@ -146,9 +153,7 @@ const Login = () => {
           setErr("");
         }}
       >
-        {isLogin
-          ? "New user? Sign Up here"
-          : "Already have an account? Login"}
+        {isLogin ? "New user? Sign Up here" : "Already have an account? Login"}
       </p>
     </fieldset>
   );

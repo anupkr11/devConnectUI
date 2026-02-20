@@ -32,7 +32,7 @@ const ProfileEdit = ({ user }) => {
         { withCredentials: true },
       );
       console.log(res.data);
-      dispatch(addUser(res?.data));
+      dispatch(addUser(res?.data?.user));
       setToast(true);
       setTimeout(() => {
         setToast(false);
