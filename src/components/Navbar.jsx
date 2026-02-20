@@ -20,9 +20,9 @@ const Navbar = () => {
   }
   return (
     <div className="navbar bg-base-300 shadow-sm">
-        {user &&<div className="flex-1">
+        <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl">devConnect</Link>
-        </div>}
+        </div>
         {user && <div className="flex gap-2">
           <div className='flex items-center'>Welcome {user.firstName}</div>
           <div className="dropdown dropdown-end mx-5">
